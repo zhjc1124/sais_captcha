@@ -59,7 +59,7 @@ def main():
     x_test = np.load('x.npy')
     y_test = np.load('y.npy')
     calc_error_rate(x_test[:1000], y_test[:1000], theta)
-    error =0
+    error = 0
     for i in range(1, 250+1):
         pred = ocr('./tests/gifs/%06d.gif' % i, theta)
         with open('./tests/labels/%06d.txt' % i) as f:
