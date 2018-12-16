@@ -1,9 +1,25 @@
 import numpy as np
-from operate import gif2vec, vec2char
-from train import sigmoid, load_theta
+from operate import gif2vec, vec2char, sigmoid
+from train import load_theta
 input_layer_num = 128
 hidden_layer_num = 80
 output_layer_num = 54
+
+
+def calc_error_rate(x_test, y_test, theta):
+    pred = predict(x_test, theta)
+
+    real = vec2char(y_test)
+
+    num = len(pred)
+    error = 0
+
+    for i in range(len(pred)):
+        # print(pred[i], real[i])
+        if pred[i] != real[i]:
+            error += 1
+    print('error rate: ', error/num)
+    return error/num
 
 
 def predict(x, theta):
@@ -23,22 +39,6 @@ def predict(x, theta):
     a3 = sigmoid(z3)
     txt = vec2char(a3)
     return txt
-
-
-def calc_error_rate(x_test, y_test, theta):
-    pred = predict(x_test, theta)
-
-    real = vec2char(y_test)
-
-    num = len(pred)
-    error = 0
-
-    for i in range(len(pred)):
-        # print(pred[i], real[i])
-        if pred[i] != real[i]:
-            error += 1
-    print('error rate: ', error/num)
-    return error/num
 
 
 def ocr(url, theta):

@@ -1,20 +1,13 @@
 import os
 import numpy as np
 import re
+from operate import sigmoid, sigmoid_gradient
 INIT_EPSILON = 0.1
 LAMBDA = 3
-ALPHA = 1
+alpha = 1.7
 input_layer_num = 128
 hidden_layer_num = 80
 output_layer_num = 54
-
-
-def sigmoid(x):
-    return 1/(1+np.exp(-x))
-
-
-def sigmoid_gradient(x):
-    return sigmoid(x)*(1-sigmoid(x))
 
 
 def cost(x, y, theta):
@@ -85,10 +78,11 @@ def main():
     y = np.load('y.npy')
     print('y shape:', y.shape)
     # check(x, y, theta)
+
     while True:
         for i in range(1, 50+1):
             J, grad = cost(x, y, theta)
-            theta -= ALPHA * grad
+            theta -= alpha * grad
             iteration += 1
             print('iteration: ', iteration, ',cost: ', J)
         np.save('./theta/theta-%d.npy' % iteration, theta)
