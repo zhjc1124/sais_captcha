@@ -56,16 +56,16 @@ def ocr(url, theta):
 
 def main():
     theta, iteration = load_theta()
-    x_test = np.load('x.npy')
-    y_test = np.load('y.npy')
-    calc_error_rate(x_test[:1000], y_test[:1000], theta)
+    x_test = np.load('x_test.npy')
+    y_test = np.load('y_test.npy')
+    calc_error_rate(x_test[:2000], y_test[:2000], theta)
     error = 0
     for i in range(1, 250+1):
         pred = ocr('./tests/gifs/%06d.gif' % i, theta)
         with open('./tests/labels/%06d.txt' % i) as f:
             real = f.read()
         if pred != real:
-            print(pred, real)
+            print(pred, real, i)
             error += 1
     print('label error rate: ', error/250)
 

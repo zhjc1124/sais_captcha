@@ -110,7 +110,7 @@ def main():
 
 if __name__ == '__main__':
     main()
-    y = np.load('y.npy')
+    # y = np.load('y.npy')
     # print(vec2char(y))
 
 
