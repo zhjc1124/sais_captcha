@@ -4,7 +4,7 @@ import re
 from operate import sigmoid, sigmoid_gradient
 INIT_EPSILON = 0.1
 LAMBDA = 3
-alpha = 1.7
+alpha = 0.001
 input_layer_num = 128
 hidden_layer_num = 80
 output_layer_num = 54
@@ -78,13 +78,17 @@ def main():
     y = np.load('y.npy')
     print('y shape:', y.shape)
     # check(x, y, theta)
-
+    pre_J, _ = cost(x, y, theta)
     while True:
-        for i in range(1, 50+1):
+        for i in range(1, 10+1):
             J, grad = cost(x, y, theta)
             theta -= alpha * grad
             iteration += 1
             print('iteration: ', iteration, ',cost: ', J)
+            if J > pre_J:
+                os._exit(-1)
+            else:
+                pre_J = J
         np.save('./theta/theta-%d.npy' % iteration, theta)
 
 

@@ -58,7 +58,7 @@ def main():
     theta, iteration = load_theta()
     x_test = np.load('x_test.npy')
     y_test = np.load('y_test.npy')
-    calc_error_rate(x_test[:2000], y_test[:2000], theta)
+    calc_error_rate(x_test, y_test, theta)
     error = 0
     for i in range(1, 250+1):
         pred = ocr('./tests/gifs/%06d.gif' % i, theta)

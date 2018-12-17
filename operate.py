@@ -3,12 +3,14 @@ import numpy as np
 import os
 VALID_CHARS = '23456789abcdefghjkmnpqrstuvwxyzABCDEFGHJKLMNPRSTUVWXYZ'
 
+
 def sigmoid(x):
     return 1/(1+np.exp(-x))
 
 
 def sigmoid_gradient(x):
     return sigmoid(x)*(1-sigmoid(x))
+
 
 def get_frames(url):
     gif = cv2.VideoCapture(url)
